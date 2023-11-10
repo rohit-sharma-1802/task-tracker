@@ -1,14 +1,14 @@
 body{
     background-color: rgb(203, 252, 245);
-    color: rgb(255, 255, 255);
-     overflow: hidden;
+    color: rgb(158, 20, 192);
+    overflow: hidden;
 }
 h1{
     text-align: center;
 }
 
 .todo-wrapper{
-    background: #353434;
+    background: rgb(240, 139, 240);
     padding: 2%;
     width: fit-content;
     margin-left: auto;
@@ -88,7 +88,7 @@ h1{
 }
 
 .todo-list-item{
-    background-color: #414040;
+    background-color: rgb(210, 230, 121);
     display: flex;
     justify-content: space-between;
     padding: 25px;

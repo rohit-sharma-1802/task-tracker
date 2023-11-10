@@ -57,12 +57,26 @@ const App = () => {
     setCompletedTodos(updatedCompletedArr)
 
     deleteTodo(index)
+    localStorage.setItem('completedTodos',JSON.stringify(updatedCompletedArr))
+  }
+
+  function deleteCompletedTodo(ind) {
+    let reducedTodo = completedTodos.filter((item,index) => index!==ind)
+
+    localStorage.setItem('completedTodos',JSON.stringify(reducedTodo))
+
+    setCompletedTodos(reducedTodo)
   }
 
   useEffect(()=>{
+
     let savedTodo = JSON.parse(localStorage.getItem('todoList'))
     if (savedTodo) {
       setTodos(savedTodo)
+    }
+    let savedCompletedTodo = JSON.parse(localStorage.getItem('completedTodos'))
+    if (savedCompletedTodo) {
+      setCompletedTodos(savedCompletedTodo)
     }
   },[])
 
@@ -117,7 +131,7 @@ const App = () => {
                 <h3>{item.tit}</h3>
                 <p><small>Completed on: {item.completedOn}</small></p>
                 <span className="todo-list-item-action">
-                  <button onClick={()=>deleteTodo(index)}>Delete</button>
+                  <button onClick={()=>deleteCompletedTodo(index)}>Delete</button>
                   <button>View</button>
                 </span>
               </div>
