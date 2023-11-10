@@ -46,10 +46,10 @@ const LoginSignup = () => {
             <div className='lines'></div>
         </div>
         <div className='google'>
-            Sign in with Google
+            <a href='#'>Sign in with Google</a>
         </div>
         <div className='google'>
-            Sign in with GitHub
+            <a href='#'>Sign in with GitHub</a>
         </div>
       </div>
     
