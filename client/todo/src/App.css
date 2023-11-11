@@ -7,6 +7,24 @@ h1{
     text-align: center;
 }
 
+.app{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    height: 100vh;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    text-align: center;
+}
+.high-priority{
+    color: rgb(223, 132, 132);
+}
+
 .todo-wrapper{
     background: rgb(240, 139, 240);
     padding: 2%;
