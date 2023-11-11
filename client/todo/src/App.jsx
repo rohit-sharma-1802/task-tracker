@@ -105,15 +105,17 @@ const App = () => {
       <div className="sidebar">
         <p><u>SignUp/LogIn</u></p>
         <h2>High Priority Tasks :</h2>
-        <ul className="high-priority">
+        <div>
           {priorityTodos.map((item,index) => {
-            return (<li key={index}>
-              {item.tit}
-              <button>View</button>
-              <button onClick={()=>completedHighTodo(index)}>Done</button>
-            </li>)
+            return (<div key={index} className="high-priority">
+              <div className="high-title">{item.tit}</div>
+              <div className="high-button">
+                <button>View</button>
+                <button onClick={()=>completedHighTodo(index)}>Done</button>
+              </div>
+            </div>)
           })}
-        </ul>
+        </div>
       </div>
 
       <div className="my-todos">
