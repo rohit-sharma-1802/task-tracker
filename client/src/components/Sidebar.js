@@ -1,39 +1,58 @@
-// Sidebar.js
 import React from "react";
+import classNames from "classnames";
+import { Link, useLocation } from "react-router-dom";
+import { FcAlarmClock } from "react-icons/fc";
+import { HiOutlineLogout } from "react-icons/hi";
+import {
+  DASHBOARD_SIDEBAR_LINKS,
+  DASHBOARD_SIDEBAR_BOTTOM_LINKS,
+} from "../lib/constants";
 
-const Sidebar = () => {
+const linkClass =
+  "flex items-center gap-2 font-light px-3 py-2 hover:bg-neutral-700 hover:no-underline active:bg-neutral-600 rounded-sm text-base";
+
+export default function Sidebar() {
   return (
-    <div className="w-1/4 bg-gray-800 text-gray-100 h-screen">
-      <div className="p-4">
-        <h1 className="text-2xl font-bold mb-4">Task Tacker</h1>
-        <ul>
-          <li className="mb-2">
-            <a
-              href="#"
-              className="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-600"
-            >
-              <svg
-                className="h-5 w-5 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16m-7 6h7"
-                ></path>
-              </svg>
-              Dashboard
-            </a>
-          </li>
-          {/* Add more menu items as needed */}
-        </ul>
+    <div className="bg-neutral-900 w-60 p-3 flex flex-col">
+      <div className="flex items-center gap-2 px-1 py-3">
+        <FcAlarmClock fontSize={24} />
+        <span className="text-neutral-200 text-lg">TaskTracker</span>
+      </div>
+      <div className="py-8 flex flex-1 flex-col gap-0.5">
+        {DASHBOARD_SIDEBAR_LINKS.map((link) => (
+          <SidebarLink key={link.key} link={link} />
+        ))}
+      </div>
+      <div className="flex flex-col gap-0.5 pt-2 border-t border-neutral-700">
+        {DASHBOARD_SIDEBAR_BOTTOM_LINKS.map((link) => (
+          <SidebarLink key={link.key} link={link} />
+        ))}
+        <div className={classNames(linkClass, "cursor-pointer text-red-500")}>
+          <span className="text-xl">
+            <HiOutlineLogout />
+          </span>
+          Logout
+        </div>
       </div>
     </div>
   );
-};
+}
 
-export default Sidebar;
+function SidebarLink({ link }) {
+  const { pathname } = useLocation();
+
+  return (
+    <Link
+      to={link.path}
+      className={classNames(
+        pathname === link.path
+          ? "bg-neutral-700 text-white"
+          : "text-neutral-400",
+        linkClass
+      )}
+    >
+      <span className="text-xl">{link.icon}</span>
+      {link.label}
+    </Link>
+  );
+}
