@@ -1,8 +1,16 @@
 import "../src/index.css";
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home, Login, Signup, About, Dashboard } from "./pages";
-import TodosCard from "./components/TodosCard";
+import { Categories, TaskManager, AddNewTaskForm } from "./components";
+import {
+  Home,
+  Login,
+  Signup,
+  About,
+  Dashboard,
+  HelpAndSupport,
+  UserProfile,
+} from "./pages";
 
 function App() {
   return (
@@ -13,10 +21,11 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/about" element={<About />} />
         <Route path="/dashboard" element={<Dashboard />}>
-          <Route path="todos" element={<TodosCard />} />
-          <Route path="manage-task" element={<TodosCard />} />
-          <Route path="categories" element={<TodosCard />} />
-          <Route path="reminders" element={<TodosCard />} />
+          <Route path="add-new-task" element={<AddNewTaskForm />} />
+          <Route path="manage-task" element={<TaskManager />} />
+          <Route path="categories" element={<Categories />} />
+          <Route path="profile" element={<UserProfile />} />
+          <Route path="help-and-support" element={<HelpAndSupport />} />
         </Route>
       </Routes>
     </BrowserRouter>
