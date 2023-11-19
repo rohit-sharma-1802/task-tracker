@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CardItem from "../components/CardItem";
-import { HiDotsVertical } from "react-icons/hi";
+import { HiArrowRight, HiDotsVertical } from "react-icons/hi";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { BoardData } from "../lib/board-data";
 
@@ -36,8 +36,14 @@ const TaskManager = () => {
     <div className="p-5 flex flex-col h-screen">
       {/* Board header */}
       <div>
-        <div className="flex items-center py-4">
+        <div className="flex justify-between py-4">
           <h4 className="text-3xl font-bold text-gray-600">Mange Your Task</h4>
+          <button
+            type="button"
+            className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-3 py-1 text-center me-2 mb-2 flex justify-center items-center gap-2"
+          >
+            Save Your Progress <HiArrowRight />
+          </button>
         </div>
       </div>
 
