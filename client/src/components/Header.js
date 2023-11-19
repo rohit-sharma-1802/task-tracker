@@ -33,16 +33,13 @@ const Header = () => {
               onClick={handleMenuClick}
               className="ml-2 bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-neutral-400"
             >
-              <span className="sr-only">Open user menu</span>
               <div
                 className="h-10 w-10 rounded-full bg-sky-500 bg-cover bg-no-repeat bg-center"
                 style={{
                   backgroundImage:
                     'url("https://source.unsplash.com/80x80?face")',
                 }}
-              >
-                <span className="sr-only">Marc Backes</span>
-              </div>
+              ></div>
             </button>
           </div>
           {isMenuOpen && (

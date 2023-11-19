@@ -29,6 +29,7 @@ const TaskManager = () => {
       dragItem
     );
     setBoardData(newBoardData);
+    console.log(boardData);
   };
 
   return (
@@ -36,7 +37,7 @@ const TaskManager = () => {
       {/* Board header */}
       <div>
         <div className="flex items-center py-4">
-          <h4 className="text-4xl font-bold text-gray-600">Mange Your Task</h4>
+          <h4 className="text-3xl font-bold text-gray-600">Mange Your Task</h4>
         </div>
       </div>
 
