@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import {
-  HiFolderRemove,
-  HiPencilAlt,
-  HiPlusCircle,
-  HiTrash,
-} from "react-icons/hi";
+import { HiPencilAlt, HiPlusCircle, HiTrash } from "react-icons/hi";
 
 const Categories = () => {
   const [categories, setCategories] = useState(["Category 1", "Category 2"]);
