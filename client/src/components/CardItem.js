@@ -2,7 +2,15 @@ import React, { useState } from "react";
 import { HiPlus, HiCalendar, HiBell, HiMail } from "react-icons/hi";
 import { Draggable } from "react-beautiful-dnd";
 import AddNewTaskModal from "./AddNewTaskForm";
+import TaskDetails from "./TaskDetails"; // Make sure to import TaskDetails
+
 function CardItem({ data, index }) {
+  const [taskId, setTaskId] = useState(null);
+
+  function openTaskDetails(id) {
+    setTaskId(id);
+  }
+
   return (
     <Draggable index={index} draggableId={data.id.toString()}>
       {(provided, snapshot) => (
@@ -39,7 +47,6 @@ function CardItem({ data, index }) {
               {data.cateogry}
             </label>
           </div>
-
           <h5 className="text-md my-3 py-3 text-lg leading-6">{data.title}</h5>
           <div className="flex justify-between">
             <div className="flex space-x-2 items-center">
@@ -61,16 +68,20 @@ function CardItem({ data, index }) {
             </div>
 
             <ul className="flex space-x-3">
-              {data.assignees.map((ass, index) => {
-                return (
-                  <button className="flex gap-1 items-center border-2 px-2 py-1 text-sm">
-                    <HiPlus />
-                    Details
-                  </button>
-                );
-              })}
+              {data.assignees.map((ass, index) => (
+                <button
+                  key={index}
+                  className="flex gap-1 items-center border-2 px-2 py-1 text-sm"
+                  onClick={() => openTaskDetails(ass.id)} // Assuming ass.id is the task ID
+                >
+                  <HiPlus />
+                  Details
+                </button>
+              ))}
             </ul>
           </div>
+          {taskId && <TaskDetails taskId={taskId} />}{" "}
+          {/* Render TaskDetails component */}
         </div>
       )}
     </Draggable>

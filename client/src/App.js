@@ -11,6 +11,7 @@ import {
   HelpAndSupport,
   UserProfile,
 } from "./pages";
+import TaskDetails from "./components/TaskDetails";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="categories" element={<Categories />} />
           <Route path="profile" element={<UserProfile />} />
           <Route path="help-and-support" element={<HelpAndSupport />} />
+          <Route path="task-details" element={<TaskDetails />} />
         </Route>
       </Routes>
     </BrowserRouter>
