@@ -1,4 +1,5 @@
 import React from "react";
+
 import homebg from "../assets/HomePage.png"; // Assuming homebg.jpg is the correct path to your image
 import { Link } from "react-router-dom";
 const Home = () => {
