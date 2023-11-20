@@ -94,10 +94,10 @@ const AddNewTaskForm = () => {
                 ></div>
               </div>
               <button
-                type="submit"
-                className="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-[#fff] bg-[#24778e] rounded-lg primary-200 primary-900 hover:bg-primary-800"
+                type="button"
+                className="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl font-medium rounded-lg text-sm px-5 py-2.5 text-center mt-6 mb-2"
               >
-                Add Task
+                Save
               </button>
             </form>
           </div>

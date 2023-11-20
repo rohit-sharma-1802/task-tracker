@@ -3,9 +3,6 @@ import React from "react";
 const UserProfile = () => {
   return (
     <div>
-      <div className="flex items-center py-4">
-        <h4 className="text-3xl font-bold text-gray-600">User Profiles</h4>
-      </div>
       <div className="flex flex-col justify-center items-center pt-20">
         <div className="bg-white max-w-2xl shadow overflow-hidden sm:rounded-lg">
           <div className="px-4 py-5 sm:px-6">

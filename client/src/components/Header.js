@@ -19,7 +19,8 @@ const Header = () => {
   return (
     <div className="bg-white h-16 px-4 flex items-center border-b border-gray-200 justify-between">
       <button
-        className="flex items-center gap-2 mx-2 bg-[#218493] px-3 py-2 rounded-xl border-gray-900 text-white text-sm uppercase shadow-xl"
+        type="button"
+        className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l font-medium rounded-lg text-sm px-3 py-1 text-center me-2 mb-2 flex justify-center items-center gap-2"
         onClick={handleNewTask}
       >
         Add Task
@@ -45,7 +46,10 @@ const Header = () => {
           {isMenuOpen && (
             <div className="origin-top-right z-10 absolute right-0 mt-2 w-48 rounded-sm shadow-md p-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
               <div
-                onClick={() => navigate("profile")}
+                onClick={() => {
+                  setIsMenuOpen(!isMenuOpen);
+                  navigate("profile");
+                }}
                 className={classNames(
                   "rounded-sm px-4 py-2 text-gray-700 cursor-pointer"
                 )}
@@ -53,6 +57,10 @@ const Header = () => {
                 Your Profile
               </div>
               <div
+                onClick={() => {
+                  setIsMenuOpen(!isMenuOpen);
+                  navigate("/");
+                }}
                 className={classNames(
                   "rounded-sm px-4 py-2 text-gray-700 cursor-pointer"
                 )}

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { HiPencilAlt, HiPlusCircle, HiTrash } from "react-icons/hi";
 
 const Categories = () => {
-  const [categories, setCategories] = useState(["Category 1", "Category 2"]);
+  const [categories, setCategories] = useState([]);
   const [newCategory, setNewCategory] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -34,13 +34,15 @@ const Categories = () => {
     <div>
       <div>
         <div className="flex items-center py-4">
-          <h4 className="text-3xl font-bold text-gray-600">Manage Category</h4>
+          <h4 className="text-3xl font-bold text-gray-600">
+            Manage Categories
+          </h4>
         </div>
         <section className="bg-white rounded-2xl">
           <div className="pt-3 pl-3">
             <button
               type="button"
-              className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-3 py-1 text-center me-2 mb-2 flex justify-center items-center gap-2"
+              className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l font-medium rounded-lg text-sm px-3 py-1 text-center me-2 mb-2 flex justify-center items-center gap-2"
               onClick={() => {
                 setIsModalOpen(true);
                 setSelectedCategory(null); // Set to null for adding a new category
@@ -50,7 +52,7 @@ const Categories = () => {
             </button>
           </div>
           <div className="py-8 px-4 mx-auto max-w-2xl lg:py-8">
-            <table className="min-w-full border border-gray-300">
+            <table className="w-full border border-gray-300">
               <thead>
                 <tr>
                   <th className="border-b">Category</th>
@@ -62,12 +64,6 @@ const Categories = () => {
                   <tr key={index}>
                     <td className="border-b">{category}</td>
                     <td className="border-b">
-                      <button
-                        onClick={() => handleUpdateCategory(index)}
-                        className="text-blue-500 mr-2"
-                      >
-                        <HiPencilAlt />
-                      </button>
                       <button
                         onClick={() => handleDeleteCategory(index)}
                         className="text-red-500"
@@ -114,13 +110,15 @@ const Categories = () => {
                           ? setSelectedCategory(null)
                           : handleAddCategory();
                       }}
-                      className="bg-blue-500 text-white px-4 py-2 rounded-md"
+                      className="
+                      text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl font-medium rounded-lg text-sm px-5 py-2 text-center mt-1 mb-2"
                     >
                       {selectedCategory !== null ? "Update" : "Add"}
                     </button>
                     <button
                       onClick={() => setIsModalOpen(false)}
-                      className="ml-2 bg-gray-300 text-gray-700 px-4 py-2 rounded-md"
+                      className="
+                      text-white bg-black font-medium rounded-lg text-sm px-5 py-2 text-center mt-1 ml-3 mb-2"
                     >
                       Cancel
                     </button>

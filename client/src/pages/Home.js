@@ -1,10 +1,10 @@
 import React from "react";
-import homebg from "../assets/homebg.jpg"; // Assuming homebg.jpg is the correct path to your image
+import homebg from "../assets/HomePage.png"; // Assuming homebg.jpg is the correct path to your image
 import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <div
-      className="h-screen bg-cover bg-center overflow-hidden"
+      className="h-screen bg-cover bg-center overflow-hidden "
       style={{ backgroundImage: `url(${homebg})` }} // Fixed image import issue
     >
       {/* Navabr will be here */}

@@ -40,7 +40,7 @@ const TaskManager = () => {
           <h4 className="text-3xl font-bold text-gray-600">Mange Your Task</h4>
           <button
             type="button"
-            className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-3 py-1 text-center me-2 mb-2 flex justify-center items-center gap-2"
+            className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l font-medium rounded-lg text-sm px-3 py-1 text-center me-2 mb-2 flex justify-center items-center gap-2"
           >
             Save Your Progress <HiArrowRight />
           </button>

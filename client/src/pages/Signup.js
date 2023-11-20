@@ -22,25 +22,25 @@ const Login = () => {
       }
     } catch (error) {
       console.log("Something went wrong" + error.message);
-      setErrorMessage("An unexpected error occurred. Please try again.");
+      setErrorMessage("An unexpected error occurred");
     }
   };
 
   return (
-    <div className="bg-gray-900 flex flex-col items-center justify-center min-h-screen py-2">
-      <form className="bg-gray-800 shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        <h1 className="text-center text-white text-2xl font-semibold uppercase">
+    <div className="bg-gray-100 flex flex-col items-center justify-center min-h-screen py-2">
+      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <h1 className="text-center text-gray-800 text-2xl font-semibold uppercase">
           Signup
         </h1>
         <div className="mb-4">
           <label
-            className="block text-gray-300 text-sm font-bold mb-2"
+            className="block text-gray-600 text-sm font-bold mb-2"
             htmlFor="name"
           >
             Name
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline bg-gray-700 text-white"
+            className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline bg-gray-200 text-gray-800"
             id="name"
             type="text"
             placeholder="Name"
@@ -49,13 +49,13 @@ const Login = () => {
         </div>
         <div className="mb-4">
           <label
-            className="block text-gray-300 text-sm font-bold mb-2"
+            className="block text-gray-600 text-sm font-bold mb-2"
             htmlFor="email"
           >
             Email
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline bg-gray-700 text-white"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200"
             id="email"
             type="email"
             placeholder="Email"
@@ -64,30 +64,30 @@ const Login = () => {
         </div>
         <div className="mb-6">
           <label
-            className="block text-gray-300 text-sm font-bold mb-2"
+            className="block text-gray-600 text-sm font-bold mb-2"
             htmlFor="password"
           >
             Password
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-200 mb-3 leading-tight focus:outline-none focus:shadow-outline bg-gray-700 text-white"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline bg-gray-200"
             id="password"
             type="password"
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <div className="text-[#fff]"> {errorMessage}</div>
+        <div className="text-red-600 mb-4">{errorMessage}</div>
         <div className="flex items-center justify-between">
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="button"
             onClick={handleSignup}
           >
             Create Account
           </button>
           <Link
-            className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-300"
+            className="inline-block align-baseline text-sm text-blue-500 hover:text-blue-300"
             to="/login"
           >
             Sign in
