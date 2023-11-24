@@ -5,10 +5,6 @@ import { HiPlusCircle } from "react-icons/hi";
 import Cookies from "js-cookie";
 
 const Header = () => {
-  let name = "";
-  if (Cookies.get("uer_name")) {
-    name = Cookies.get("user_name");
-  }
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -46,7 +42,7 @@ const Header = () => {
               className="ml-2 bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-neutral-400"
             >
               <div className="w-7 h-7 rounded-full object-cover bg-green-700 flex justify-center items-center text-white text-xs font-bold">
-                {name[0]}
+                {Cookies.get("user_name")[0]}
               </div>
             </button>
           </div>

@@ -27,6 +27,8 @@ const Login = () => {
       });
 
       if (response.status === 200) {
+        Cookies.set("user_name", name);
+        Cookies.set("user_email", email);
         navigate("/Dashboard");
       } else {
         setErrorMessage(response.data.message);
