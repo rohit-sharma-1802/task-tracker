@@ -6,7 +6,7 @@ export const BoardData = [
         id: 1,
         priority: 0,
         title: "Company website redesign.",
-        cateogry: "Assignment",
+        category: "Assignment",
         assignees: [
           {
             avt: "https://randomuser.me/api/portraits/men/75.jpg",
@@ -17,7 +17,7 @@ export const BoardData = [
         id: 2,
         priority: 2,
         title: "Mobile app login process prototype.",
-        cateogry: "Project",
+        category: "Project",
         assignees: [
           {
             avt: "https://randomuser.me/api/portraits/men/67.jpg",
@@ -33,7 +33,7 @@ export const BoardData = [
         id: 3,
         priority: 1,
         title: "Research and strategy for upcoming project.",
-        cateogry: "Lab",
+        category: "Lab",
         assignees: [
           {
             avt: "https://randomuser.me/api/portraits/men/79.jpg",
@@ -49,7 +49,7 @@ export const BoardData = [
         id: 6,
         priority: 0,
         title: "Review client spec document and give feedback.",
-        cateogry: "Assignment",
+        category: "Assignment",
         assignees: [
           {
             avt: "https://randomuser.me/api/portraits/men/75.jpg",
@@ -60,7 +60,7 @@ export const BoardData = [
         id: 67,
         priority: 0,
         title: "Check my progress, task completed and give feedback.",
-        cateogry: "Lab",
+        category: "Lab",
         assignees: [
           {
             avt: "https://randomuser.me/api/portraits/men/75.jpg",
@@ -71,7 +71,7 @@ export const BoardData = [
         id: 7,
         priority: 1,
         title: "Navigation designs",
-        cateogry: "Project",
+        category: "Project",
         assignees: [
           {
             avt: "https://randomuser.me/api/portraits/men/68.jpg",
@@ -82,7 +82,7 @@ export const BoardData = [
         id: 8,
         priority: 2,
         title: "Create style guide based on previous feedback",
-        cateogry: "Lab",
+        category: "Lab",
         assignees: [
           {
             avt: "https://randomuser.me/api/portraits/men/64.jpg",
