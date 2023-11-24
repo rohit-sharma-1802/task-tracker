@@ -1,5 +1,5 @@
 {
-    "email": "rohitsharma.dev22@gmail.com",
+    "email": "rashi223@gmail.com",
     "todos": [
         {
             "id": 12,
@@ -27,15 +27,7 @@
             "category": "personal issue",
             "priority": 2,
             "description": "Book train ticket to go to home. it must be urgent"
-        }
-    ]
-}
-
-
-
-
-{
-    "items": [
+        },
         {
             "id": 15,
             "todoName": "in progress",
@@ -62,11 +54,7 @@
             "category": "college",
             "priority": 2,
             "description": "build a project for the assignment"
-        }
-    ]
-},
-{
-    "items": [
+        },
         {
             "id": 18,
             "todoName": "completed",
@@ -96,29 +84,3 @@
         }
     ]
 }
-]
-}
-
-
-
-
-{
-"email": "rohitsharma.dev22@gmail.com",
-"todos": [
-{
-    "todoName": "newly created",
-    "items": [
-        {
-            "id": 12,
-            "title": "prepare for lab exam",
-            "imageurl": "https://placeholder.com/300x400",
-            "category": "lab",
-            "priority": 0,
-            "description": "preparation is started from monday and should be completed till wednesday."
-        }
-    ]
-}
-]
-}
-
-

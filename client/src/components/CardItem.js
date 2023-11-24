@@ -44,7 +44,7 @@ function CardItem({ data, index }) {
               className="
                 px-2 py-0.5 rounded text-white text-sm bg-slate-700"
             >
-              {data.cateogry}
+              {data.category}
             </label>
           </div>
           <h5 className="text-md my-3 py-3 text-lg leading-6">{data.title}</h5>
@@ -67,7 +67,7 @@ function CardItem({ data, index }) {
               </span>
             </div>
 
-            <ul className="flex space-x-3">
+            {/* <ul className="flex space-x-3">
               {data.assignees.map((ass, index) => (
                 <button
                   key={index}
@@ -78,10 +78,8 @@ function CardItem({ data, index }) {
                   Details
                 </button>
               ))}
-            </ul>
+            </ul> */}
           </div>
-          {taskId && <TaskDetails taskId={taskId} />}{" "}
-          {/* Render TaskDetails component */}
         </div>
       )}
     </Draggable>

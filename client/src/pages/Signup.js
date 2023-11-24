@@ -27,6 +27,8 @@ const Login = () => {
       });
 
       if (response.status === 200) {
+        Cookies.set("user_email", email);
+        Cookies.set("user_name", name);
         navigate("/Dashboard");
       } else {
         // Handle unexpected status code
@@ -81,7 +83,7 @@ const Login = () => {
             id="email"
             type="email"
             placeholder="Email"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value.toLowerCase())}
           />
         </div>
         <div className="mb-6">

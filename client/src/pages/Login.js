@@ -78,7 +78,7 @@ const Login = () => {
               type="email"
               placeholder="Email"
               onChange={(e) => {
-                setEmail(e.target.value);
+                setEmail(e.target.value.toLowerCase());
               }}
             />
           </div>

@@ -1,7 +1,6 @@
 // controllers/todoController.js
 
 const User = require("../models/user");
-const Todo = require("../models/todo");
 
 // todo controller
 const addTodo = async (req, res) => {
@@ -12,6 +11,7 @@ const addTodo = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
+
     user.todos.push(...todos);
     await user.save();
 
@@ -25,29 +25,22 @@ const addTodo = async (req, res) => {
 // Controller to update a todo for a user
 const updateTodo = async (req, res) => {
   try {
-    const { email } = req.params;
-    const { todoName, updatedTodo } = req.body;
+    const { email, todos } = req.body;
+    console.log(todos);
     const user = await User.findOne({ email: email });
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-
-    const todoIndex = user.todos.findIndex(
-      (todo) => todo.todoName === todoName
-    );
-
-    if (todoIndex === -1) {
-      return res.status(404).json({ message: "Todo not found" });
+    if (todos.length > 0) {
+      user.todos = todos;
+      await user.save();
+      res.status(200).json({ message: "Todos updated successfully" });
+    } else {
+      res.status(400).json({ message: "New todos array is empty" });
     }
-
-    user.todos[todoIndex] = updatedTodo;
-
-    await user.save();
-
-    res.status(200).json({ message: "Todo updated successfully" });
   } catch (error) {
-    console.error("Error updating todo:", error.message);
+    console.error("Error updating todos:", error.message);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
@@ -71,35 +64,4 @@ const getAllTodos = async (req, res) => {
   }
 };
 
-const deleteTodo = async (req, res) => {
-  try {
-    const { email, id } = req.body;
-
-    // Find the user by email
-    const user = await User.findOne({ email: email });
-
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    // Find the index of the todo to delete
-    const todoIndex = user.todos.findIndex((todo) => todo.id === id);
-
-    if (todoIndex === -1) {
-      return res.status(404).json({ message: "Todo not found" });
-    }
-
-    // Remove the todo from the array
-    user.todos.splice(todoIndex, 1);
-
-    // Save the updated user document
-    await user.save();
-
-    res.status(200).json({ message: "Todo deleted successfully" });
-  } catch (error) {
-    console.error("Error deleting todo:", error.message);
-    res.status(500).json({ message: "Internal Server Error" });
-  }
-};
-
-module.exports = { addTodo, updateTodo, getAllTodos, deleteTodo };
+module.exports = { addTodo, updateTodo, getAllTodos };

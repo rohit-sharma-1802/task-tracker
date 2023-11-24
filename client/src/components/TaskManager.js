@@ -3,16 +3,111 @@ import CardItem from "../components/CardItem";
 import { HiArrowRight, HiDotsVertical } from "react-icons/hi";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { BoardData } from "../lib/board-data";
+import Cookies from "js-cookie";
+import axios from "axios";
+let isCancelled = false;
+function callmethod(obj) {
+  for (let key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      if (obj[key]["todoName"] === "newly created") {
+        const newItem = {
+          id: obj[key]["id"],
+          priority: obj[key]["priority"],
+          title: obj[key]["title"],
+          category: obj[key]["category"],
+          imageUrl: obj[key]["imageurl"],
+          description: obj[key]["description"],
+        };
+        addItemToBoard("Newly Created", newItem);
+      } else if (obj[key]["todoName"] === "in progress") {
+        const newItem = {
+          id: obj[key]["id"],
+          priority: obj[key]["priority"],
+          title: obj[key]["title"],
+          category: obj[key]["category"],
+          imageUrl: obj[key]["imageurl"],
+          description: obj[key]["description"],
+        };
+        addItemToBoard("Newly Created", newItem);
+      } else if (obj[key]["todoName"] === "completed") {
+        const newItem = {
+          id: obj[key]["id"],
+          priority: obj[key]["priority"],
+          title: obj[key]["title"],
+          category: obj[key]["category"],
+          imageUrl: obj[key]["imageurl"],
+          description: obj[key]["description"],
+        };
+        addItemToBoard("Completed", newItem);
+      }
+    }
+  }
+}
+
+function addItemToBoard(boardName, newItem) {
+  const board = BoardData.find((board) => board.name === boardName);
+  if (board) {
+    board.items.push(newItem);
+  } else {
+    console.error(`Board with name '${boardName}' not found.`);
+  }
+}
+
+// function convertBoardDataToTodoData(boardData) {
+//   const todoData = {};
+
+//   boardData.forEach((boardSection) => {
+//     const boardName = boardSection.name;
+
+//     boardSection.items.forEach((item) => {
+//       const itemId = item.id;
+//       todoData[itemId] = {
+//         todoName: boardName.toLowerCase().replace(/\s+/g, "_"), // assuming todoName is based on boardName
+//         id: item.id,
+//         priority: item.priority,
+//         title: item.title,
+//         category: item.category,
+//         imageurl: item.imageUrl,
+//         description: item.description,
+//       };
+//     });
+//   });
+//   return todoData;
+// }
 
 const TaskManager = () => {
+  const email = Cookies.get("user_email");
   const [ready, setReady] = useState(false);
   const [boardData, setBoardData] = useState(BoardData);
-
+  const [todoData, setTodoData] = useState();
+  // const [newTodo, setNewTodo] = useState({});
   useEffect(() => {
     if (typeof window !== "undefined") {
       setReady(true);
     }
   }, []);
+
+  useEffect(() => {
+    if (!isCancelled) {
+      isCancelled = true;
+      const fetchTodoData = async () => {
+        try {
+          const response = await axios.post(
+            "http://localhost:8000/api/v1/getalltodo",
+            { email }
+          );
+          if (response.status === 200) {
+            setTodoData(response.data.todos);
+            callmethod(response.data.todos);
+            console.log(todoData);
+          }
+        } catch (error) {
+          console.error("Error fetching categories:", error.message);
+        }
+      };
+      fetchTodoData();
+    }
+  }, [email]);
 
   const onDragEnd = (re) => {
     if (!re.destination) return;
@@ -29,8 +124,26 @@ const TaskManager = () => {
       dragItem
     );
     setBoardData(newBoardData);
-    console.log(boardData);
   };
+
+  // const saveProgress = async () => {
+  //   try {
+  //     const response = await axios.post(
+  //       "http://localhost:8000/api/v1/updatetodo",
+  //       {
+  //         email: email,
+  //         todos: newTodo,
+  //       }
+  //     );
+
+  //     if (response.status === 201) {
+  //       // Todo added successfully, you can redirect or show a success message
+  //       console.log("Todo added successfully");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error adding todo:", error.message);
+  //   }
+  // };
 
   return (
     <div className="p-5 flex flex-col h-screen">
@@ -41,6 +154,7 @@ const TaskManager = () => {
           <button
             type="button"
             className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l font-medium rounded-lg text-sm px-3 py-1 text-center me-2 mb-2 flex justify-center items-center gap-2"
+            // onClick={saveProgress}
           >
             Save Your Progress <HiArrowRight />
           </button>
