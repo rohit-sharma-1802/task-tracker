@@ -1,0 +1,124 @@
+{
+    "email": "rohitsharma.dev22@gmail.com",
+    "todos": [
+        {
+            "id": 12,
+            "todoName": "newly created",
+            "title": "prepare for lab exam",
+            "imageurl": "https://placeholder.com/300x400",
+            "category": "lab",
+            "priority": 0,
+            "description": "preparation is started from monday and should be completed till wednesday."
+        },
+        {
+            "id": 13,
+            "todoName": "newly created",
+            "title": "Meeting with sumedha mam",
+            "imageurl": "https://placeholder.com/300x400",
+            "category": "meeting",
+            "priority": 1,
+            "description": "Meeting with sumedha mam regarding attandance short"
+        },
+        {
+            "id": 14,
+            "todoName": "newly created",
+            "title": "Train ticket booking",
+            "imageurl": "https://placeholder.com/300x400",
+            "category": "personal issue",
+            "priority": 2,
+            "description": "Book train ticket to go to home. it must be urgent"
+        }
+    ]
+}
+
+
+
+
+{
+    "items": [
+        {
+            "id": 15,
+            "todoName": "in progress",
+            "title": "Assignment writing",
+            "imageurl": "https://placeholder.com/300x400",
+            "category": "work",
+            "priority": 0,
+            "description": "write the assignment for the os"
+        },
+        {
+            "id": 16,
+            "todoName": "in progress",
+            "title": "Project work",
+            "imageurl": "https://placeholder.com/300x400",
+            "category": "meeting",
+            "priority": 1,
+            "description": "Complete the project, before month end"
+        },
+        {
+            "id": 17,
+            "todoName": "in progress",
+            "title": "Web dev project",
+            "imageurl": "https://placeholder.com/300x400",
+            "category": "college",
+            "priority": 2,
+            "description": "build a project for the assignment"
+        }
+    ]
+},
+{
+    "items": [
+        {
+            "id": 18,
+            "todoName": "completed",
+            "title": "ANN assignment",
+            "imageurl": "https://placeholder.com/300x400",
+            "category": "assignment",
+            "priority": 0,
+            "description": "write the assignment for the ANN"
+        },
+        {
+            "id": 19,
+            "todoName": "completed",
+            "title": "Project Modification",
+            "imageurl": "https://placeholder.com/300x400",
+            "category": "project",
+            "priority": 1,
+            "description": "make the required changes, as per discussion"
+        },
+        {
+            "id": 20,
+            "todoName": "completed",
+            "title": "Meeting for required changes",
+            "imageurl": "https://placeholder.com/300x400",
+            "category": "meeting",
+            "priority": 2,
+            "description": "project updatation meeting & seo updateds"
+        }
+    ]
+}
+]
+}
+
+
+
+
+{
+"email": "rohitsharma.dev22@gmail.com",
+"todos": [
+{
+    "todoName": "newly created",
+    "items": [
+        {
+            "id": 12,
+            "title": "prepare for lab exam",
+            "imageurl": "https://placeholder.com/300x400",
+            "category": "lab",
+            "priority": 0,
+            "description": "preparation is started from monday and should be completed till wednesday."
+        }
+    ]
+}
+]
+}
+
+

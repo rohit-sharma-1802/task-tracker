@@ -1,100 +1,105 @@
-// --- Import the model (schema) ---
-// const Todo = require("../models/todo");
+// controllers/todoController.js
 
+const User = require("../models/user");
+const Todo = require("../models/todo");
 
-// // ---- Define route handler ----
-// exports.createTodo = async (req, res) => {
-//     try {
-//       const Todo = new Todo(req.body);
-//       await Todo.save();
-//       res.status(201).json(Todo);
-//     } catch (error) {
-//       res.status(400).json({ error: error.message });
-//     }
-//   };
-
-// exports.getTodo = async (req, res) => {
-//   try {
-//     const Todos = await Todo.find();
-//     res.json(Todos);
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
-// };
-
-const Todo = require('../models/todo');
-
-// Controller to handle the logic for creating a new todo
-exports.createTodo = async (req, res) => {
-    try {
-      const newTodo = new Todo(req.body);
-      await newTodo.save();
-      res.status(201).json(newTodo);
-    } catch (error) {
-      res.status(400).json({ error: error.message });
-    }
-  };
-  
-// Controller to handle the logic for getting all todos
-exports.getAllTodos = async (req, res) => {
+// todo controller
+const addTodo = async (req, res) => {
   try {
-    const todos = await Todo.find();
-    res.json(todos);
+    const { email, todos } = req.body;
+    const user = await User.findOne({ email: email });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    user.todos.push(...todos);
+    await user.save();
+
+    res.status(201).json({ message: "Todos added successfully" });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error("Error adding todos:", error.message);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
-module.exports = exports;
+// Controller to update a todo for a user
+const updateTodo = async (req, res) => {
+  try {
+    const { email } = req.params;
+    const { todoName, updatedTodo } = req.body;
+    const user = await User.findOne({ email: email });
 
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
 
+    const todoIndex = user.todos.findIndex(
+      (todo) => todo.todoName === todoName
+    );
 
+    if (todoIndex === -1) {
+      return res.status(404).json({ message: "Todo not found" });
+    }
 
+    user.todos[todoIndex] = updatedTodo;
 
+    await user.save();
 
+    res.status(200).json({ message: "Todo updated successfully" });
+  } catch (error) {
+    console.error("Error updating todo:", error.message);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
 
+const getAllTodos = async (req, res) => {
+  try {
+    const { email } = req.body;
 
+    const user = await User.findOne({ email: email });
 
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
 
+    const todos = user.todos;
 
+    res.status(200).json({ todos });
+  } catch (error) {
+    console.error("Error getting todos:", error.message);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
 
+const deleteTodo = async (req, res) => {
+  try {
+    const { email, id } = req.body;
 
+    // Find the user by email
+    const user = await User.findOne({ email: email });
 
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
 
+    // Find the index of the todo to delete
+    const todoIndex = user.todos.findIndex((todo) => todo.id === id);
 
+    if (todoIndex === -1) {
+      return res.status(404).json({ message: "Todo not found" });
+    }
 
+    // Remove the todo from the array
+    user.todos.splice(todoIndex, 1);
 
+    // Save the updated user document
+    await user.save();
 
+    res.status(200).json({ message: "Todo deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting todo:", error.message);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
 
-
-
-
-
-
-// exports.createtodo = async(req,res) =>{
-//     try
-//     {
-//         //  Extract title and description from request body.
-//         const {title,description} = req.body;
-
-//         //---Create a todo object and insert into DB---.
-//         const response = await todo.create({title,description});
-
-//         // send a json response with a success flag !!
-//             res.status(200).json({
-//                 success:true,
-//                 data: response,
-//                 message:'Entry created successfully',
-//             });
-//         }
-//         catch(err)
-//         {
-//             console.error(err);
-//             console.log(err);
-//             res.status(500).json({ // 500 internal server show
-//                 success:false,
-//                 data:"internal server error",
-//                 message :'err.message',
-//             }); 
-//         }
-//     }
+module.exports = { addTodo, updateTodo, getAllTodos, deleteTodo };
