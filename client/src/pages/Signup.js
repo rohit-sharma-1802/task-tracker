@@ -1,8 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Cookies from "js-cookie";
 const Login = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
+  useEffect(() => {
+    // Check if user_name and user_email cookies are not set
+    const userName = Cookies.get("user_name");
+    const userEmail = Cookies.get("user_email");
+
+    if (userName || userEmail) {
+      // Redirect to the login page if cookies are not set
+      navigate("/dashboard");
+    }
+  }, [navigate]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

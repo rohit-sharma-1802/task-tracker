@@ -1,18 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Cookies from "js-cookie"; // Import the js-cookie library
 
 const Login = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    // Check if user_name and user_email cookies are not set
+    const userName = Cookies.get("user_name");
+    const userEmail = Cookies.get("user_email");
+
+    if (userName || userEmail) {
+      // Redirect to the login page if cookies are not set
+      navigate("/dashboard");
+    }
+  }, [navigate]);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  let navigate = useNavigate();
 
   const handleLogin = async () => {
     if (!email || !password) {
       setErrorMessage("Please fill in all the details");
       return;
     }
+
     try {
       const response = await axios.post("http://localhost:8000/api/v1/login", {
         email: email,
@@ -20,15 +33,28 @@ const Login = () => {
       });
 
       if (response.status === 200) {
+        // Store user data in cookies
+        Cookies.set("user_email", email);
+        Cookies.set("user_name", response.data.user.name);
+
         navigate("/Dashboard");
       } else {
-        // Display an error message (customize this based on your API response)
-        setErrorMessage(response.data.message);
+        // Handle unexpected status code
+        setErrorMessage("An unexpected error occurred");
       }
     } catch (error) {
-      // Handle any errors that occurred during the API call
-      console.error("Error during login:", error.message);
-      setErrorMessage("An unexpected error occurred");
+      // Handle errors that occurred during the API call
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        setErrorMessage(error.response.data.message);
+      } else if (error.request) {
+        // The request was made but no response was received
+        setErrorMessage("No response from the server");
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        setErrorMessage("An unexpected error occurred");
+      }
     }
   };
 

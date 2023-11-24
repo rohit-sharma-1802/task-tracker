@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
 import { HiPlusCircle } from "react-icons/hi";
+import Cookies from "js-cookie";
 
 const Header = () => {
+  let name = "";
+  if (Cookies.get("uer_name")) {
+    name = Cookies.get("user_name");
+  }
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -12,8 +17,15 @@ const Header = () => {
   };
 
   const handleNewTask = () => {
-    console.log("hi");
     navigate("add-new-task");
+  };
+
+  const handleSignOut = () => {
+    // Remove user_name and user_email cookies
+    Cookies.remove("user_name");
+    Cookies.remove("user_email");
+    // Redirect to the login page
+    navigate("/");
   };
 
   return (
@@ -27,20 +39,15 @@ const Header = () => {
         <HiPlusCircle />
       </button>
       <div className="flex items-center gap-2 mr-2">
-        {/* User Profile */}
         <div className="relative">
           <div>
             <button
               onClick={handleMenuClick}
               className="ml-2 bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-neutral-400"
             >
-              <div
-                className="h-10 w-10 rounded-full bg-sky-500 bg-cover bg-no-repeat bg-center"
-                style={{
-                  backgroundImage:
-                    'url("https://source.unsplash.com/80x80?face")',
-                }}
-              ></div>
+              <div className="w-7 h-7 rounded-full object-cover bg-green-700 flex justify-center items-center text-white text-xs font-bold">
+                {name[0]}
+              </div>
             </button>
           </div>
           {isMenuOpen && (
@@ -59,7 +66,7 @@ const Header = () => {
               <div
                 onClick={() => {
                   setIsMenuOpen(!isMenuOpen);
-                  navigate("/");
+                  handleSignOut(); // Call the handleSignOut function
                 }}
                 className={classNames(
                   "rounded-sm px-4 py-2 text-gray-700 cursor-pointer"
@@ -74,4 +81,5 @@ const Header = () => {
     </div>
   );
 };
+
 export default Header;
